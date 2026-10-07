@@ -1638,50 +1638,21 @@ footer small {
     transform: translate3d(0, -6px, 0) rotate(1.1deg);
   }
 }
-@keyframes deckReturn {
-  0% {
-    z-index: 26;
-    transform: translate3d(var(--gesture-x), var(--gesture-y), 12px) rotate(0deg) scale(0.994);
-  }
-  42% {
-    z-index: 26;
-    transform: translate3d(0, 18px, -54px) rotate(var(--return-r)) scale(0.965);
-  }
-  43%,
-  100% {
-    z-index: 18;
-    transform: translate3d(8px, 22px, -72px) rotate(var(--return-r)) scale(0.94);
-  }
-}
-@keyframes deckRise {
-  0% {
-    z-index: 23;
-    transform: translate3d(var(--deck-x), var(--deck-y), var(--deck-z)) rotate(var(--deck-r)) scale(var(--deck-s));
-    box-shadow: 0 12px 28px rgba(49, 42, 35, 0.16);
-  }
-  100% {
-    z-index: 24;
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
-    box-shadow: 0 20px 48px rgba(49, 42, 35, 0.24);
-  }
-}
 .deck-card {
   transition:
-    transform 0.64s cubic-bezier(0.22, 0.68, 0.24, 1),
-    box-shadow 0.64s ease;
+    transform 0.58s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.35s ease,
+    box-shadow 0.58s ease;
 }
-.deck-card.active[style] {
-  transition: transform 0.18s ease-out;
-}
-.deck-card.active[style]:active {
+.deck-card.is-drag {
   transition: none;
 }
-.deck-card.is-returning {
-  animation: deckReturn 0.64s cubic-bezier(0.22, 0.68, 0.24, 1) both;
+.deck-card.is-fly {
+  transition: transform 0.5s cubic-bezier(0.28, 0.58, 0.3, 1);
   pointer-events: none;
 }
-.deck-card.is-rising {
-  animation: deckRise 0.64s cubic-bezier(0.22, 0.68, 0.24, 1) both;
+.deck-card.is-snap {
+  transition: none;
 }
 @keyframes educationMarquee {
   to {
@@ -1755,10 +1726,12 @@ footer small {
     transform: none;
     animation: none;
   }
-  .hero-object-drift,
-  .deck-card.is-returning,
-  .deck-card.is-rising {
+  .hero-object-drift {
     animation: none;
+  }
+  .deck-card,
+  .deck-card.is-fly {
+    transition-duration: 0.01ms;
   }
   .education-ticker-track {
     animation: none;
