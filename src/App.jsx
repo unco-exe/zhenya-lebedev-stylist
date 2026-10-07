@@ -13,6 +13,10 @@ function Image({ src, alt, eager = false, ...props }) {
   return <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : 'auto'} decoding="async" {...props} />
 }
 
+function ArrowUpRightIcon() {
+  return <svg className="arrow-up-right" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13 13 3M5 3h8v8" stroke="currentColor" strokeWidth="1.35" strokeLinecap="square" strokeLinejoin="miter" /></svg>
+}
+
 function Loader() {
   const [visible, setVisible] = useState(false)
   useEffect(() => {
@@ -75,7 +79,7 @@ function Header({ openPanel }) {
             openPanel('booking', 'header')
           }}
         >
-          BOOK ↗
+          BOOK <ArrowUpRightIcon />
         </button>
       </nav>
       <button className="menu" type="button" aria-expanded={menu} onClick={() => setMenu(!menu)}>
@@ -200,7 +204,7 @@ function Services({ openPanel }) {
               <b>{item.price}</b>
               <small>{item.time}</small>
             </div>
-            <i>↗</i>
+            <i><ArrowUpRightIcon /></i>
           </button>
         ))}
       </div>
@@ -363,7 +367,7 @@ function Footer() {
       <strong>ZHENYA LEBEDEV</strong>
       <span>MOSCOW</span>
       <a href={site.instagram} target="_blank" rel="noreferrer" onClick={() => track('instagram_click')}>
-        {site.instagramLabel} ↗
+        {site.instagramLabel} <ArrowUpRightIcon />
       </a>
       <a href="#services">BOOKING</a>
       <a href="#education">EDUCATION</a>
